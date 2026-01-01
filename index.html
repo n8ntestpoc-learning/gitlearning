@@ -149,7 +149,7 @@
         <button class="tab" role="tab" aria-selected="true" aria-controls="install">Installing Git</button>
         <button class="tab" role="tab" aria-selected="false" aria-controls="global">Set User Info Git</button>
         <button class="tab" role="tab" aria-selected="false" aria-controls="check">Git Flow</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="repo">Repo-specific</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="repo">Remove Git Repo(Local)</button>
         
          <button class="tab" role="tab" aria-selected="false" aria-controls="global">Global1</button>
       </div>
@@ -223,10 +223,24 @@
         <!-- Repo specific -->
         <section id="repo" role="tabpanel" class="hidden">
           <div class="section">
-            <h2>Repository-specific user (overrides global)</h2>
+            <h2>Remove Local Git Repo</h2>
             <div class="code">
-              <pre>git config user.name "Your Name"
-git config user.email "you@example.com"</pre>
+              <pre>rm -rf .git/</pre>
+            </div>
+
+             <h2>Create specific branch</h2>
+            <div class="code">
+              <pre>git init --initial-branch=branch_name</pre>
+            </div>
+
+             <h2>Get Detailed Status</h2>
+            <div class="code">
+              <pre>git status -v</pre>
+            </div>
+
+            <h2>Get Short Status</h2>
+            <div class="code">
+              <pre>git status -s</pre>
             </div>
           </div>
         </section>
