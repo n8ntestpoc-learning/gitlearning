@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Git User Info Dashboard</title>
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #111a33;
+      --muted: #a9b3d1;
+      --text: #e9ecff;
+      --accent: #7aa2ff;
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 14px;
+      --mono: ui-monospace, Consolas, monospace;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: radial-gradient(1200px 700px at 15% 10%, rgba(122,162,255,0.20), transparent 60%),
+                  radial-gradient(900px 600px at 85% 20%, rgba(139,92,246,0.18), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      padding: 28px;
+    }
+
+    .wrap { max-width: 1000px; margin: auto; }
+
+    h1 { margin: 0 0 6px; font-size: 22px; }
+    p.subtitle { color: var(--muted); font-size: 13px; }
+
+    .card {
+      margin-top: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.15);
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--text);
+      border-color: rgba(122,162,255,0.4);
+      background: rgba(122,162,255,0.12);
+    }
+
+    .content { padding: 18px; }
+    .hidden { display: none; }
+
+    .section {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .section h2 {
+      font-size: 14px;
+      margin: 0 0 8px;
+    }
+
+    .section p, .section li {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .code {
+      margin-top: 8px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .codebar {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 10px;
+      font-size: 12px;
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+    }
+
+    pre {
+      margin: 0;
+      padding: 12px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .hint {
+      margin-top: 8px;
+      padding-left: 10px;
+      border-left: 3px solid rgba(122,162,255,0.6);
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>Git Dashboard</h1>
+    <p class="subtitle">Install Git, verify setup, and manage global vs repository-specific user configuration</p>
+
+    <div class="card">
+      <!-- Tabs -->
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="install">Installing Git</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="global">Set User Info Git</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="check">Git Flow</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="repo">Repo-specific</button>
+        
+         <button class="tab" role="tab" aria-selected="false" aria-controls="global">Global1</button>
+      </div>
+
+      <div class="content">
+        <!-- Installing Git -->
+        <section id="install" role="tabpanel">
+          <div class="section">
+            <h2>Installing Git</h2>
+            <ul>
+              <li>Download Git installer from the official website</li>
+              <li>Install as <b>--standalone</b> (default installer)</li>
+              <li>If <b>Git Bash</b> tool is installed → it installs Git automatically</li>
+            </ul>
+
+            <div class="hint">
+              On Windows, Git Bash provides a Unix-like terminal along with Git CLI.
+            </div>
+          </div>
+
+          <div class="section">
+            <h2>Verify Installation</h2>
+            <p>Open <b>Git Bash</b> and type:</p>
+
+            <div class="code">
+              <div class="codebar">Verification Command</div>
+              <pre>git</pre>
+            </div>
+
+            <p>
+              If Git is installed correctly, you will see a list of Git commands and usage help.
+            </p>
+          </div>
+
+          <div class="section">
+            <h2>Verify Git Version</h2>
+            <p>Open <b>Git Bash</b> and type:</p> 
+
+            <div class="code">
+              <div class="codebar">Verification Command</div>
+              <pre>git --version</pre>
+            </div>
+            </div>
+        </section>
+
+        <!-- Git Flow -->
+        <section id="check" role="tabpanel" class="hidden">
+          <div class="section">
+            <h2>Create File</h2>
+            <div class="code">
+              <pre>nano filename.extension</pre>
+            </div>
+
+            <h2>Stage File</h2>
+            <div class="code">
+              <pre>git add filename.extension</pre>
+            </div>
+
+            <h2>Commit File</h2>
+            <div class="code">
+              <pre>git commit -m "Your commit message"</pre>
+            </div>
+
+            <h2>Check Log</h2>
+            <div class="code">
+              <pre>git log</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Repo specific -->
+        <section id="repo" role="tabpanel" class="hidden">
+          <div class="section">
+            <h2>Repository-specific user (overrides global)</h2>
+            <div class="code">
+              <pre>git config user.name "Your Name"
+git config user.email "you@example.com"</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Global -->
+        <section id="global" role="tabpanel" class="hidden">
+          <div class="section">
+            <h2>Global Git user</h2>
+            <div class="code">
+              <pre>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</pre>
+            </div>
+
+            <h2>Repo Specific Git user</h2>
+            <div class="code">
+              <pre>git config  user.name "Your Name"
+git config  user.email "you@example.com"</pre>
+            </div>
+
+            <h2>Check current Git user (effective)</h2>
+            <div class="code">
+              <pre>git config –list | grep-user</pre>
+            </div>
+
+            <h2>Specific User Related</h2>
+            <div class="code">
+              <pre>git config user.name
+git config user.email</pre>
+            </div>
+        <!-- Check Values Origin -->
+             <h2>Values Origin</h2>
+            <div class="code">
+              <pre>git config --show-origin user.name</pre>
+              <pre>git config --show-origin user.email</pre>
+            </div>
+          </div>
+        </section>
+     
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const panels = document.querySelectorAll('[role="tabpanel"]');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+        panels.forEach(p => p.classList.add('hidden'));
+
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById(tab.getAttribute('aria-controls')).classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
